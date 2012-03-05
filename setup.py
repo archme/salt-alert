@@ -45,7 +45,7 @@ setup(
                 ],
       scripts=['scripts/salt-alert'],
       data_files=[(os.path.join(etc_path, 'salt'),
-                    ['conf/alert']),
+                    ['conf/alert.template']),
                 ('share/man/man1',
                     ['doc/man/salt-alert.1',
                     ]),

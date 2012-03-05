@@ -6,12 +6,12 @@ pkgver=$(date +%Y%m%d)
 pkgrel=1
 pkgdesc='An alert delivery system that extends the salt core'
 arch=('any')
-url="https://github.com/thatch45/salt"
+url="https://github.com/archme/salt-alert"
 license=('APACHE')
 groups=()
 depends=('python2' 'salt')
 makedepends=()
-provides=()
+provides=('salt-alert')
 backup=('etc/salt/alert')
 options=()
 srcdir="$PWD/../.."
@@ -20,8 +20,12 @@ package() {
   cd "$srcdir"
 
   python2 setup.py install --root=$pkgdir/ --optimize=1
-  
+
+
+  mkdir -p $pkgdir/var/log/salt/
+  chmod 700 $pkgdir/var/log/salt/
+
   mkdir -p $pkgdir/etc/rc.d/
   cp $srcdir/pkg/arch/salt-alert $pkgdir/etc/rc.d/
   chmod +x $pkgdir/etc/rc.d/*
-} 
+}

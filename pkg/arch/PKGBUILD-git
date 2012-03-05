@@ -1,21 +1,21 @@
 # Maintainer: Thomas S Hatch <thatch45 at gmail dot com>
-pkgname=salt-alert
+pkgname=salt-alert-git
 pkgver=$(date +%Y%m%d)
 pkgrel=1
 pkgdesc='An alert delivery system that extends the salt core'
 arch=('any')
-url="https://github.com/thatch45/salt"
+url="https://github.com/archme/salt"
 license=('APACHE')
 groups=()
 depends=('python2' 'salt')
 makedepends=('git')
-provides=()
+provides=('salt-alert')
 backup=('etc/salt/alert')
 options=()
 source=("salt-alert")
-md5sums=('c435daa3b553a6425b48a8abed11b863')
+md5sums=('a64d80a0f28adc0831a146f775d7b6c0')
 
-_gitroot="git://github.com/thatch45/salt-alert.git"
+_gitroot="git://github.com/archme/salt-alert.git"
 _gitname="alert"
 
 build() {
@@ -41,8 +41,11 @@ package() {
   cd "$srcdir/$_gitname-build"
 
   python2 setup.py install --root=$pkgdir/ --optimize=1
-  
+
+  mkdir -p $pkgdir/var/log/salt/
+  chmod 700 $pkgdir/var/log/salt/
+
   mkdir -p $pkgdir/etc/rc.d/
   cp $srcdir/salt-alert $pkgdir/etc/rc.d/
   chmod +x $pkgdir/etc/rc.d/*
-} 
+}
