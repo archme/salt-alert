@@ -1,7 +1,7 @@
 # Maintainer: Thomas S Hatch <thatch45 at gmail dot com>
 # Build the salt package from local files.
 # Use this to test Arch installation before committing changes.
-pkgname=salt-alert
+pkgname=salt-alert-git
 pkgver=$(date +%Y%m%d)
 pkgrel=1
 pkgdesc='An alert delivery system that extends the salt core'
